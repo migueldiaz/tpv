@@ -1,0 +1,24 @@
+<h1>Cuenta</h1>
+<br/>
+<ul class="breadcrumb">
+  <li >
+   <%=link_to 'Cuentas',bills_path%> <span class="divider">/</span>
+  </li>
+<li class="active">
+      <%=link_to 'ver cuenta'%>
+  </li>
+  
+</ul>
+
+
+<label class="label"><%= t("activerecord.attributes.bill.description", :default => t("activerecord.labels.description", :default => "Descripción")) %>:</label>
+<p><%= @bill.description %></p>
+
+<label class="label"><%= t("activerecord.attributes.bill.created_at", :default => t("activerecord.labels.created_at", :default => "Emitida")) %>:</label>
+<p><%= l @bill.created_at,:format=>:short %></p>
+<label class="label">Productos</label>
+<div class="form-actions">
+<%= link_to "Volver", bills_path, :class => 'btn'  %>
+<%= link_to "Editar", edit_bill_path(@bill), :class => 'btn' %>
+<%= link_to "Borrar", bill_path(@bill), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn' %>
+</div>

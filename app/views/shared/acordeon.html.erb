@@ -1,0 +1,27 @@
+ <%if !@bill.nil?%>
+	<h2>Productos</h2>
+	<p>Seleccione una categoría para desplegar los productos</p>
+	<div class="accordion" id="accordion2">
+	<% @categories.each do |category|%>
+		 <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%=category.id%>">
+                 <%=category.name%>
+                </a>
+              </div>
+              <div id="collapse<%=category.id%>" class="accordion-body collapse ">
+                <div class="accordion-inner">
+              
+                  <% category.products.each do |product|%>
+				<ul>
+				<li><%=product.name%> - <%=product.price%>€ </li>
+				</ul>
+				<%end%>
+                </div>
+              </div>
+            </div>
+		
+	<%end%>
+        
+        
+<%end%>

@@ -1,0 +1,16 @@
+
+<label class="label"><%= t("activerecord.attributes.product.name", :default => t("activerecord.labels.name", :default => "Nombre")) %>:</label>
+<p><%= @product.name %></p>
+
+<label class="label"><%= t("activerecord.attributes.product.price", :default => t("activerecord.labels.price", :default => "Precio")) %>:</label>
+<p><%= @product.price %></p>
+<label class="label"><%= t("activerecord.attributes.product.price", :default => t("activerecord.labels.price", :default => "Tipo")) %>:</label>
+<p><%= @product.category.name %></p>
+
+<div class="form-actions">
+<%= link_to "Volver", products_path, :class => 'btn btn-success'  %>
+<%= link_to "Editar", edit_product_path(@product), :class => 'btn' %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "Borrar", product_path(@product), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger' %>
+</div>
+<input type="button"  class="btn btn-primary" id="print" onclick="print()" value="Imprimir"/>

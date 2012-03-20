@@ -1,0 +1,35 @@
+<h1>Productos</h1>
+<table class="table table-striped">
+ <thead>
+  <tr>
+   
+    <th>
+      <%= t("activerecord.attributes.product.name", :default => t("activerecord.labels.name", :default => "Nombre")) %>
+    </th>
+     <th>Precio</th>
+    <th>Tipo</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |product| -%>
+   <tr>
+    
+    <td><%= link_to product.name.capitalize, product_path(product) %></td>
+    <td><%= product.price %></td>
+     <td><%= product.category.name %></td>
+    <td>
+      <%= link_to product_path(product) ,:class=>"btn  btn-success" do %>
+     	 <i class="icon-eye-open "></i> Ver
+	  <% end %>
+      <%= link_to "Editar", edit_product_path(product) ,:class=>"btn "%>
+      <%= link_to  product_path(product), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}",:class=>"btn btn-danger " do %>
+     	 <i class="icon-trash "></i> Borrar
+	  <% end %>
+    </td>
+    </tr>
+    <% end -%>
+   </tbody>
+</table>
+
+<%= link_to "Nuevo producto", new_product_path, :class => 'btn btn-primary btn-large' %>

@@ -1,0 +1,26 @@
+<h1>Categorys</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= link_to category.name, category_path(category) %></td>
+        <td><%= category.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_category_path(category), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', category_path(category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_category_path, :class => 'btn btn-primary' %>

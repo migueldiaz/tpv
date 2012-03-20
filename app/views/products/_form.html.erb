@@ -1,0 +1,25 @@
+
+<div class="clearfix">
+   <%= f.label :name, t("activerecord.attributes.product.name", :default => "Nombre"), :class => :label %>
+  <div class="input">
+    <%= f.text_field :name, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="clearfix">
+   <%= f.label :price, t("activerecord.attributes.product.price", :default => "Precio"), :class => :label %>
+  <div class="input">
+    <%= f.text_field :price, :class => 'text_field' %>
+  </div>
+</div>
+<div class="clearfix">
+   <%= f.label :category, t("activerecord.attributes.product.category", :default => "Tipo"), :class => :label %>
+  <div class="input">
+   
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
+</div>
+<div class="form-actions">
+  <button class="btn primary" type="submit">Guardar</button> o
+	<%= link_to "Cancelar", products_path %>
+</div>

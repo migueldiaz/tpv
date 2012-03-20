@@ -1,0 +1,14 @@
+<h1>Mesa </h1>
+
+<p>
+  <b>Nombre</b><br>
+  <%= @table.name %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Volver', tables_path, :class => 'btn btn-large'  %>
+  &nbsp;&nbsp;&nbsp;
+  <%= link_to 'Editar', edit_table_path(@table), :class => 'btn btn-large' %>
+  &nbsp;&nbsp;&nbsp;
+  <%= link_to 'Delete', table_path(@table), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger btn-large' %>
+</div>
