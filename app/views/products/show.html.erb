@@ -7,6 +7,13 @@
 <label class="label"><%= t("activerecord.attributes.product.price", :default => t("activerecord.labels.price", :default => "Tipo")) %>:</label>
 <p><%= @product.category.name %></p>
 
+<label class='label'><%= t('imagen')%></label>
+	<%if @product.icon_url.to_s!='' %>
+		 <%= image_tag @product.icon_url.to_s,:size=>'64x64' %>
+	<%else%>
+	   <p>Sin imagen asignada</p>
+	<%end%>
+
 <div class="form-actions">
 <%= link_to "Volver", products_path, :class => 'btn btn-success'  %>
 <%= link_to "Editar", edit_product_path(@product), :class => 'btn' %>

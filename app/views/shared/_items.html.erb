@@ -1,0 +1,35 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Eliminar</th>
+      <th>Pedido</th>
+      <th>Cantidad</th>
+    
+     
+      <th>Modificar cantidad</th>
+    </tr>
+  </thead>
+   <tbody>
+<%@bill.items.each do |item|%>
+  <tr>
+   <td>
+     <%= link_to item_path(item), :method => :delete, :confirm => '¿Quitar de la cuenta?',:class=>"btn  btn-danger" do %>
+     	 <i class="icon-trash "></i><% end %>
+   </td>
+   <td><%=item.product.name%></td>
+   <td><%=item.amount%></td>
+
+   <td>
+         <%= link_to bill_path(item.bill) ,:class=>"btn  btn-success" do %>
+     	 <i class="icon-plus "></i><% end %>
+     	 &nbsp;
+     	  <%= link_to bill_path(item.bill) ,:class=>"btn  btn-danger" do %>
+     	 <i class="icon-minus "></i><% end %>
+   
+   
+   </td>
+  </tr>
+
+<%end%>
+  </tbody>
+</table>

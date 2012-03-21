@@ -8,6 +8,7 @@
     </th>
      <th>Precio</th>
     <th>Tipo</th>
+    <th>Imagen</th>
     <th>Acciones</th>
   </tr>
   </thead>
@@ -18,6 +19,11 @@
     <td><%= link_to product.name.capitalize, product_path(product) %></td>
     <td><%= product.price %></td>
      <td><%= product.category.name %></td>
+     <td>
+     <%if product.icon_url.to_s!='' %>
+		<%= image_tag product.icon_url.to_s,:size=>'64x64' %>
+	<%end%>
+	</td>
     <td>
       <%= link_to product_path(product) ,:class=>"btn  btn-success" do %>
      	 <i class="icon-eye-open "></i> Ver

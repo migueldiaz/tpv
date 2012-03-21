@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
-def add
+def new
 
+@item=Item.new
 end
 def create
-@cuenta=Bill.find(params[:id])
-@item=Item.create
-@item.bill=@cuenta
-redirect_to @cuenta
+
+@item=Item.create(params[:item])
+
+redirect_to @item.bill
 end
 end

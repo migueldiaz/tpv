@@ -1,0 +1,17 @@
+<%= form_for([@bill, @bill.items.build] ) do |f| %>
+	<div class="clearfix">
+   		<%= f.label :amount, t("activerecord.attributes.item.amount", :default => "Cantidad"), :class => :label %>
+  		<div class="input">
+    	<%= f.select(:amount,:range=>1..10 ,:class => 'text_field') %>
+    	<%= f.select(:amount, (1..5).to_a.map{|i| [i,i]}) %>
+    	<%= f.hidden_field :product_id ,:class => 'text_field',:value=>product.id %>
+        <%= f.hidden_field :bill_id ,:class => 'text_field',:value=>@bill.id %>
+  		</div>
+	</div>
+
+	<div class="form-actions">
+ 		<%= f.submit 'Guardar' ,:class=>'btn'%> o
+				
+		</div>
+<%end%>
+		

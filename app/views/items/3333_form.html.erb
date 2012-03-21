@@ -1,0 +1,14 @@
+<%= form_for @item, :html => { :class => :form } ,:remote => true do |f| -%>
+<div class="clearfix">
+   <%= f.label :amount, t("activerecord.attributes.item.amount", :default => "Cantidad"), :class => :label %>
+  <div class="input">
+    <%= f.text_field :amount, :class => 'text_field' %>
+  </div>
+</div>
+
+<div class="form-actions">
+ <%= f.submit 'Guardar' ,:class=>'btn'%> o
+	<%= link_to "Cancelar", products_path %>
+</div>
+
+<% end -%>

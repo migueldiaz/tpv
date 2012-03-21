@@ -1,15 +1,26 @@
 Tpv::Application.routes.draw do
+  get "home/index"
+  resources :items
   resources :categories
+  resources :bills do
+   resources :items
+  end
 
-  resources :bills
-
+  #put "additem" => "bills/:id/add", :as => "additem"
+   #   match 'bills/:id/add' => 'bill#add', :as => :additem
+   match 'bills/:id/add' => 'bill#add', :as => :additem
+  
+  # This route can be invoked with additem_url(:id => @bill)
+  post "bills/:id/add"
+  
   resources :tables
-
-  resources :products
-
-  resources :items do
-        post 'add'
-   end
+  resources :products do
+   resources :items
+  end
+  
+  
+ 
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -59,7 +70,7 @@ Tpv::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

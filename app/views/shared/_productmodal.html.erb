@@ -1,0 +1,36 @@
+ <div id="myModal<%=product.id%>" class="modal hide fade">
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal" >&times;</a>
+              <h3><%=@bill.description%></h3>
+            </div>
+            <div class="modal-body">
+              	<label class='label'>Va a añadir:</label>
+              	<br/>
+              	<p><%= image_tag product.icon_url.to_s,:size=>'64x64' %>
+              	&nbsp;&nbsp;<%=product.name%></p>
+
+     
+      			 <!-- <%= render :partial=> 'items/form',:locals=>{:product=>product}%>-->
+           <%= form_for([@bill, @bill.items.build] ) do |f| %>
+	<div class="clearfix">
+   		<%= f.label :amount, t("activerecord.attributes.item.amount", :default => "Cantidad"), :class => :label %>
+  		<div class="input">
+    	<%= f.select :amount,1..10 ,:class => 'text_field' %>
+    	<%= f.hidden_field :product_id ,:class => 'text_field',:value=>product.id %>
+        <%= f.hidden_field :bill_id ,:class => 'text_field',:value=>@bill.id %>
+  		</div>
+	</div>
+
+
+    
+            </div>
+            <div class="modal-footer">
+              <%= f.submit 'Añadir' ,:class=>'btn btn-primary btn-success'%>
+              <a href="#" class="btn" data-dismiss="modal" >Cerrar</a>
+            </div>
+</div>
+   <%end%>
+          
+<!--<a data-toggle="modal" href="<%=new_item_path%>#myModal<%=product.id%>" title="<%=product.name%>" class="btn btn-primary btn-large"><%= image_tag product.icon_url.to_s,:size=>'64x64' %><%=product.name%></a>-->
+
+<%=link_to (image_tag product.icon_url.to_s,:size=>'64x64'),new_item_path+'#myModal'+product.id.to_s,'data-toggle'=>'modal',:class=>'btn',:id=>'create_item'%>

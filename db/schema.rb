@@ -10,12 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120320113102) do
+ActiveRecord::Schema.define(:version => 20120321144248) do
 
   create_table "bills", :force => true do |t|
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "status",      :default => false
+    t.integer  "table_id"
   end
 
   create_table "categories", :force => true do |t|
@@ -40,12 +42,14 @@ ActiveRecord::Schema.define(:version => 20120320113102) do
     t.datetime "updated_at",  :null => false
     t.integer  "category_id"
     t.float    "price"
+    t.string   "icon"
   end
 
   create_table "tables", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "bill_id"
   end
 
 end

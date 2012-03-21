@@ -1,4 +1,15 @@
 class BillsController < ApplicationController
+
+  #POST /bills/1/add
+   def add
+  @bill=Bill.find(params[:id])
+  @item=@bill.items.new
+  @item.product=params[:product]
+  @item.amount=params[:amount]
+  @item.save
+  redirect_to @bill
+  end
+
   # GET /bills
   # GET /bills.json
   def index
@@ -24,6 +35,8 @@ class BillsController < ApplicationController
 
   # GET /bills/new
   # GET /bills/new.json
+  
+  
   def new
      @categories=Category.all
     @bill = Bill.new

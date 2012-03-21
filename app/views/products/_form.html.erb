@@ -15,10 +15,26 @@
 <div class="clearfix">
    <%= f.label :category, t("activerecord.attributes.product.category", :default => "Tipo"), :class => :label %>
   <div class="input">
-   
     <%= f.collection_select(:category_id, Category.all, :id, :name) %>
   </div>
 </div>
+<!----Aqui la imagen del producto------>
+<div class="clearfix">
+ <label class='label'><%= t('imagen')%></label>
+ <%if @product.icon_url.to_s!='' %>
+ <%= image_tag @product.icon_url.to_s,:size=>'64x64' %>
+ 
+       
+          <%= f.check_box :remove_icon %>
+          <%= t('destroy')+' '+t('image')%>
+      
+    </div>
+    <%end%>
+    <div class="input">
+     
+        <%= f.file_field :icon %>
+    </div>
+
 <div class="form-actions">
   <button class="btn primary" type="submit">Guardar</button> o
 	<%= link_to "Cancelar", products_path %>

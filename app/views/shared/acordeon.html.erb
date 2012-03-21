@@ -13,9 +13,8 @@
                 <div class="accordion-inner">
               
                   <% category.products.each do |product|%>
-				<ul>
-				<li><%=product.name%> - <%=product.price%>€ </li>
-				</ul>
+					  <%= render :partial=>"/shared/productmodal" ,:locals=>{:product=>product}%>	
+						
 				<%end%>
                 </div>
               </div>

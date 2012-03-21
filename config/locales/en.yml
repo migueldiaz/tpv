@@ -3,7 +3,8 @@
 
 en:
   hello: "Hello world"
-
+  false: "pendiente"
+  true: "pagada"
   date:
     formats:
       default: "%Y-%m-%d"

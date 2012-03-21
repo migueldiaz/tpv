@@ -19,13 +19,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">Bar Alfalfa</a>
+      
+        <%=link_to 'Bar Alfalfa',root_path,:class=>'brand'%>
         <div class="nav-collapse">
           <ul class="nav"> 
             <li><%= link_to "Mesas",tables_path %></li>
             <li><%= link_to "Cuentas", bills_path %></li>
             <li><%= link_to "Examinar productos", products_path %></li>           
-            <li><%= link_to "Contact Us" %></li>
+            <li><%= link_to "Categorias",categories_path%></li>
             <li><%= link_to "Cart" %></li>
           </ul>
         </div>
@@ -35,8 +36,8 @@
 
   <div class="container">
     <div class="row">
-      <div class="span8"><%= yield %></div>
-      <div class="span4">
+      <div class="span6"><%= yield %></div>
+      <div class="span6">
        
        <!-- 
         <h2>About Us</h2>

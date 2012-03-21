@@ -10,15 +10,32 @@
   
 </ul>
 
+<label class='label'>Mesa / Descripción</label>
+	<p><b>Mesa       :</b> <%if !@bill.table.nil?%><%= @bill.table.name %><%else%>Sin mesa asignada<%end%></p>
+	<p><b>Descripción:</b> <%if @bill.description!=''%><%= @bill.description %><%else%>Sin descripción<%end%></p>
 
-<label class="label"><%= t("activerecord.attributes.bill.description", :default => t("activerecord.labels.description", :default => "Descripción")) %>:</label>
-<p><%= @bill.description %></p>
 
 <label class="label"><%= t("activerecord.attributes.bill.created_at", :default => t("activerecord.labels.created_at", :default => "Emitida")) %>:</label>
 <p><%= l @bill.created_at,:format=>:short %></p>
+<label class="label"><%= t("activerecord.attributes.bill.tatus", :default => t("activerecord.labels.status", :default => "Estado")) %>:</label>
+<p>
+ <%if @bill.status==false%>
+ <span class="label label-important">Pendiente</span>
+ <%else%>
+ <span class="label label-success">Pagada</span>
+ <%end%>
+
+
+</p>
 <label class="label">Productos</label>
+<%= render 'shared/items',:collection=>@bill.items%>
+
+
+
 <div class="form-actions">
 <%= link_to "Volver", bills_path, :class => 'btn'  %>
 <%= link_to "Editar", edit_bill_path(@bill), :class => 'btn' %>
 <%= link_to "Borrar", bill_path(@bill), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn' %>
 </div>
+
+

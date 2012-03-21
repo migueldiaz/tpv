@@ -9,19 +9,27 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Mesa</th>
       <th>Descripción</th>
       <th>Emitida</th>
+      <th>Estado</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @bills.each do |bill| %>
       <tr>
-        <td><%= bill.id %></td>
-        <td><%= link_to bill.description, bill_path(bill) %></td>
+         <td><%if !bill.table.nil?%><%= bill.table.name%><%end%></td>
+        <td><%= bill.description %></td>
         <td><%= l bill.created_at,:format=>:short  %></td>
+        <td> 
+        <%if bill.status==false%>Pendiente
+ 		<%else%>Pagada<%end%>
+ 		</td>
         <td>
+          <%= link_to bill_path(bill) ,:class=>"btn  btn-success" do %>
+     	 <i class="icon-eye-open "></i> Ver
+	  <% end %>
           <%= link_to 'Editar', edit_bill_path(bill), :class => 'btn ' %>
           <%= link_to 'Borrar', bill_path(bill), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'%>
         </td>
@@ -29,5 +37,5 @@
     <% end %>
   </tbody>
 </table>
-<%= render :file=>'shared/modal'%>
-<%= link_to 'New', new_bill_path, :class => 'btn btn-primary' %>
+<!--<%= render :file=>'shared/modal'%>-->
+<%= link_to 'Cuenta nueva', new_bill_path, :class => 'btn btn-primary btn-large' %>
