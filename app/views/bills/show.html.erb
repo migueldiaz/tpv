@@ -1,18 +1,25 @@
-<h1>Cuenta</h1>
+<h1>Cuenta: <%=@bill.table.name%></h1>
+
 <br/>
 <ul class="breadcrumb">
-  <li >
-   <%=link_to 'Cuentas',bills_path%> <span class="divider">/</span>
+   <li >
+   <%=link_to 'Mesas',tables_path%> <span class="divider">/</span>
   </li>
+   <li >
+   <%=link_to @bill.table.name,table_path(@bill.table)%> <span class="divider">/</span>
+  </li>
+  <li >
+ 
 <li class="active">
-      <%=link_to 'ver cuenta'%>
+      <%=link_to 'Cuenta'%>
   </li>
   
 </ul>
-
-<label class='label'>Mesa / Descripción</label>
+<!--
+<label class='label'>Mesa </label>
 	<p><b>Mesa       :</b> <%if !@bill.table.nil?%><%= @bill.table.name %><%else%>Sin mesa asignada<%end%></p>
 	<p><b>Descripción:</b> <%if @bill.description!=''%><%= @bill.description %><%else%>Sin descripción<%end%></p>
+-->
 
 
 <label class="label"><%= t("activerecord.attributes.bill.created_at", :default => t("activerecord.labels.created_at", :default => "Emitida")) %>:</label>
@@ -24,8 +31,6 @@
  <%else%>
  <span class="label label-success">Pagada</span>
  <%end%>
-
-
 </p>
 <label class="label">Productos</label>
 <%= render 'shared/items',:collection=>@bill.items%>

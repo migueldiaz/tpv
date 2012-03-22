@@ -1,10 +1,22 @@
 <h1>Mesas</h1>
+<br/>
+<ul class="breadcrumb">
+  <li >
+   <%=link_to 'Mesas',tables_path%> <span class="divider">/</span>
+  </li>
+  <li class='active'>
+   <%=link_to 'Cuentas',bills_path%> <span class="divider">/</span>
+  </li>
+  
+</ul>
+
 <table class="table table-condensed">
   <thead>
     <tr>
      
       <th>Nombre</th>
-     <th><
+      <th>Cuenta</th>
+      <th>Estado</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -12,7 +24,20 @@
     <% @tables.each do |table| %>
       <tr>
        
-        <td><%= link_to table.name, table_path(table) ,:class=>'btn btn-success'%></td>
+        <td><%= link_to table.name, table_path(table) %></td>
+      
+      <td>
+      	<%if table.bill.nil?%>
+          <%=link_to 'Abrir cuenta',new_bill_path(:id=>table),:class=>'btn btn-success'%>
+      	<%else%>
+      	   <%=link_to 'Ver cuenta',bill_path(table.bill),:class=>'btn '%>
+      	<%end%>
+      </td>
+      
+      <td>
+ 		<%if table.bill.status==false%><span class="label label-important">Pendiente</span>
+ 		<%else%><span class="label label-success">Pagada</span><%end%>
+	  </td>
       
         <td>
           <%= link_to 'Editar', edit_table_path(table), :class => 'btn' %>

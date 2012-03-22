@@ -20,10 +20,10 @@
    <td><%=item.amount%></td>
 
    <td>
-         <%= link_to bill_path(item.bill) ,:class=>"btn  btn-success" do %>
+         <%= link_to plus_url(item) ,:class=>"btn  btn-success" do %>
      	 <i class="icon-plus "></i><% end %>
      	 &nbsp;
-     	  <%= link_to bill_path(item.bill) ,:class=>"btn  btn-danger" do %>
+     	  <%= link_to minus_url(item) ,:class=>"btn  btn-danger" do %>
      	 <i class="icon-minus "></i><% end %>
    
    

@@ -1,3 +1,3 @@
 class Table < ActiveRecord::Base
-has_one :bill
+ has_one :bill
 end

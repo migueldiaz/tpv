@@ -1,6 +1,9 @@
 <h1>Cuentas</h1>
 <br/>
 <ul class="breadcrumb">
+  <li >
+   <%=link_to 'Mesas',tables_path%> <span class="divider">/</span>
+  </li>
   <li class='active'>
    <%=link_to 'Cuentas',bills_path%> <span class="divider">/</span>
   </li>
@@ -9,8 +12,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Mesa</th>
-      <th>Descripción</th>
+      <th>Mesa / Descripción</th>
       <th>Emitida</th>
       <th>Estado</th>
       <th>Actions</th>
@@ -19,8 +21,7 @@
   <tbody>
     <% @bills.each do |bill| %>
       <tr>
-         <td><%if !bill.table.nil?%><%= bill.table.name%><%end%></td>
-        <td><%= bill.description %></td>
+         <td><%if !bill.table.nil?%><%= bill.table.name%><%end%>  <%= bill.description %></td>
         <td><%= l bill.created_at,:format=>:short  %></td>
         <td> 
         <%if bill.status==false%>Pendiente
@@ -38,4 +39,4 @@
   </tbody>
 </table>
 <!--<%= render :file=>'shared/modal'%>-->
-<%= link_to 'Cuenta nueva', new_bill_path, :class => 'btn btn-primary btn-large' %>
+<!--<%= link_to 'Cuenta nueva', new_bill_path, :class => 'btn btn-primary btn-large' %>-->

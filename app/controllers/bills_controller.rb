@@ -2,11 +2,23 @@ class BillsController < ApplicationController
 
   #POST /bills/1/add
    def add
-  @bill=Bill.find(params[:id])
-  @item=@bill.items.new
-  @item.product=params[:product]
-  @item.amount=params[:amount]
-  @item.save
+  
+  	@bill=Bill.find(params[:id])
+    @items=@bill.items.where('product_id=?', params[:product])
+    @cuenta=@items.size
+  	puts '###########################################'
+  	if @items.size>1
+  	    @item= @bill.items.where('product_id=?', params[:product])
+  	  	#@item=@bill.items.where(:product=>params[:product])
+  	  	#puts params[:product]
+  		#if !@item.nil?
+  	   @item.update_attributes( :amount => @item.amount + params[:amount])
+  	else
+  		@item=@bill.items.new
+  		@item.product=params[:product]
+  		@item.amount=params[:amount]
+ 	 	@item.save
+ 	 end
   redirect_to @bill
   end
 
@@ -38,13 +50,19 @@ class BillsController < ApplicationController
   
   
   def new
-     @categories=Category.all
-    @bill = Bill.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @bill }
-    end
+    @table=Table.find(params[:id])
+    @categories=Category.all
+   
+    @bill=Bill.create
+    @bill.table=@table
+    #@bill = Bill.new
+    @bill.save
+    
+    redirect_to @bill
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.json { render :json => @bill }
+    #end
   end
 
   # GET /bills/1/edit
@@ -56,8 +74,10 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
-    @bill = Bill.new(params[:bill])
-
+    
+    @bill = Bill.params([:bill])
+    #@bill.table_id=params[:id]
+    puts '..........................'
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, :notice => 'Bill was successfully created.' }

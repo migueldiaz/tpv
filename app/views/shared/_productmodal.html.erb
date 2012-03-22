@@ -10,16 +10,16 @@
               	&nbsp;&nbsp;<%=product.name%></p>
 
      
-      			 <!-- <%= render :partial=> 'items/form',:locals=>{:product=>product}%>-->
-           <%= form_for([@bill, @bill.items.build] ) do |f| %>
-	<div class="clearfix">
-   		<%= f.label :amount, t("activerecord.attributes.item.amount", :default => "Cantidad"), :class => :label %>
-  		<div class="input">
-    	<%= f.select :amount,1..10 ,:class => 'text_field' %>
-    	<%= f.hidden_field :product_id ,:class => 'text_field',:value=>product.id %>
-        <%= f.hidden_field :bill_id ,:class => 'text_field',:value=>@bill.id %>
-  		</div>
-	</div>
+      		 <!-- <%= render :partial=> 'items/form',:locals=>{:product=>product}%>-->
+           	<%= form_for([@bill, @bill.items.build] ) do |f| %>
+			<div class="clearfix">
+   				<%= f.label :amount, t("activerecord.attributes.item.amount", :default => "Cantidad"), :class => :label %>
+  			<div class="input">
+    			<%= f.select :amount,1..10 ,:class => 'text_field' %>
+    			<%= f.hidden_field :product_id ,:class => 'text_field',:value=>product.id %>
+        		<%= f.hidden_field :bill_id ,:class => 'text_field',:value=>@bill.id %>
+  			</div>
+			</div>
 
 
     

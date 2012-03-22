@@ -13,14 +13,17 @@ Tpv::Application.routes.draw do
   # This route can be invoked with additem_url(:id => @bill)
   post "bills/:id/add"
   
-  resources :tables
+  resources :tables do
+     resource :bill
+  end
   resources :products do
    resources :items
   end
   
-  
- 
-  
+  # match 'items/:id/plus' => 'item#plus'
+ #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  match 'items/:id/plus' => 'items#plus',:as=>:plus
+  match 'items/:id/minus' => 'items#minus',:as=>:minus
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
