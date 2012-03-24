@@ -8,10 +8,10 @@ Tpv::Application.routes.draw do
 
   #put "additem" => "bills/:id/add", :as => "additem"
    #   match 'bills/:id/add' => 'bill#add', :as => :additem
-   match 'bills/:id/add' => 'bill#add', :as => :additem
+  # match 'bills/:id/add' => 'bill#add', :as => :additem
   
   # This route can be invoked with additem_url(:id => @bill)
-  post "bills/:id/add"
+ # post "bills/:id/add"
   
   resources :tables do
      resource :bill

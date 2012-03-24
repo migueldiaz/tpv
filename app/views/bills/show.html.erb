@@ -33,8 +33,10 @@
  <%end%>
 </p>
 <label class="label">Productos</label>
-<%= render 'shared/items',:collection=>@bill.items%>
 
+<div id='items'>
+<%= render :partial=>'shared/items',:collection=>@bill.items,:locals=>{:bill=>@bill}%>
+</div>
 
 
 <div class="form-actions">

@@ -1,23 +1,26 @@
 class ItemsController < ApplicationController
-	
-	
-	
-	
-	
+		
 	def plus
 	   @item = Item.find(params[:id])
+	   @bill=@item.bill
 	   # @item.amount+1
 	   @item.update_attributes( :amount => @item.amount + 1)
-	   redirect_to @item.bill
+	   respond_to do |format|
+		#format.html{ redirect_to @item.bill}
+		format.js
+	   end
 	end
 	
 	def minus
 	   @item = Item.find(params[:id])
 	   # @item.amount+1
+	  @bill=@item.bill
 	  if @item.amount>1
 	   @item.update_attributes( :amount => @item.amount - 1)
 	  end 
-	   redirect_to @item.bill
+	  respond_to do |format|		#format.html{ redirect_to @item.bill}
+		format.js
+	   end
 	end
 	
 	def new
@@ -59,7 +62,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @bill }
-      format.json { head :no_content }
+      format.js
     end
   end
 	

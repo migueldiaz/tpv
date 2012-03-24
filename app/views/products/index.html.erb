@@ -1,4 +1,5 @@
 <h1>Productos</h1>
+<%= link_to "Nuevo producto", new_product_path, :class => 'btn  ' %>
 <table class="table table-striped">
  <thead>
   <tr>
@@ -17,7 +18,7 @@
    <tr>
     
     <td><%= link_to product.name.capitalize, product_path(product) %></td>
-    <td><%= product.price %></td>
+    <td><%= number_to_currency(product.price,:unit =>'€',:format => "%n %u") %></td>
      <td><%= product.category.name %></td>
      <td>
      <%if product.icon_url.to_s!='' %>
@@ -38,4 +39,4 @@
    </tbody>
 </table>
 
-<%= link_to "Nuevo producto", new_product_path, :class => 'btn btn-primary btn-large' %>
+<%= link_to "Nuevo producto", new_product_path, :class => 'btn ' %>

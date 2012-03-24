@@ -4,13 +4,13 @@
       <th>Eliminar</th>
       <th>Pedido</th>
       <th>Cantidad</th>
-    
+      <th>Precio</th>
      
       <th>Modificar cantidad</th>
     </tr>
   </thead>
    <tbody>
-<%@bill.items.each do |item|%>
+<%bill.items.each do |item|%>
   <tr>
    <td>
      <%= link_to item_path(item), :method => :delete, :confirm => '¿Quitar de la cuenta?',:class=>"btn  btn-danger" do %>
@@ -18,18 +18,23 @@
    </td>
    <td><%=item.product.name%></td>
    <td><%=item.amount%></td>
-
+   <td><%=number_to_currency(item.product.price,:unit =>'€',:format => "%n %u")%></td>
    <td>
-         <%= link_to plus_url(item) ,:class=>"btn  btn-success" do %>
+         <%= link_to plus_url(item) ,:class=>"btn  btn-success",:remote=>true do %>
      	 <i class="icon-plus "></i><% end %>
      	 &nbsp;
-     	  <%= link_to minus_url(item) ,:class=>"btn  btn-danger" do %>
+     	  <%= link_to minus_url(item) ,:class=>"btn  btn-danger",:remote=>true do %>
      	 <i class="icon-minus "></i><% end %>
-   
-   
    </td>
   </tr>
-
 <%end%>
+ <tr>
+ 	<td></td>
+ 	<td></td>
+ 	<th>Total</th> 	
+ 	<td><%=number_to_currency(total(@bill),:unit =>'€',:format => "%n %u")%>&nbsp;</td>
+ 	<td></td>
+ </tr>
+
   </tbody>
 </table>

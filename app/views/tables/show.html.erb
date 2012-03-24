@@ -1,9 +1,13 @@
 <h1>Mesa </h1>
 
-<p>
-  <b>Nombre</b><br>
-  <%= @table.name %>
-</p>
+<label class="label">Nombre</label>
+<p><%= @table.name %></p>
+<label class="label">Cuenta</label>
+<p><%if @table.bill.status==false%><span class="label label-important">Pendiente</span>
+<%else%><span class="label label-success">Pagada</span><%end%><p>
+<p><b>Importe:</b> <%=number_to_currency(total(@table.bill),:unit =>'€',:format => "%n %u")%></p>
+
+<p><%= link_to 'Ver cuenta',@table.bill ,:class=>'btn'%></p>
 
 <div class="form-actions">
   <%= link_to 'Volver', tables_path, :class => 'btn btn-large'  %>

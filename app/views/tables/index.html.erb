@@ -28,15 +28,19 @@
       
       <td>
       	<%if table.bill.nil?%>
-          <%=link_to 'Abrir cuenta',new_bill_path(:id=>table),:class=>'btn btn-success'%>
+          <%=link_to new_bill_path(:id=>table),:class=>'btn' do %>
+     	  <i class="icon-plus "></i> Abrir cuenta<% end %>
       	<%else%>
-      	   <%=link_to 'Ver cuenta',bill_path(table.bill),:class=>'btn '%>
+      	   <%=link_to bill_path(table.bill),:class=>'btn' do %>
+     	  <i class="icon-eye-open "></i>    Ver cuenta<% end %>
       	<%end%>
       </td>
       
       <td>
+        <%if !table.bill.nil?%>
  		<%if table.bill.status==false%><span class="label label-important">Pendiente</span>
  		<%else%><span class="label label-success">Pagada</span><%end%>
+	    <%end%>
 	  </td>
       
         <td>
