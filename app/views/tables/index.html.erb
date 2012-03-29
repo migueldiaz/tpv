@@ -24,7 +24,7 @@
     <% @tables.each do |table| %>
       <tr>
        
-        <td><%= link_to table.name, table_path(table) %></td>
+        <td><%= table.name%></td>
       
       <td>
       	<%if table.bill.nil?%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321144248) do
+ActiveRecord::Schema.define(:version => 20120324210443) do
 
   create_table "bills", :force => true do |t|
     t.text     "description"
@@ -51,5 +51,14 @@ ActiveRecord::Schema.define(:version => 20120321144248) do
     t.datetime "updated_at", :null => false
     t.integer  "bill_id"
   end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "bill_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "table"
+  end
+
+  add_index "tickets", ["bill_id"], :name => "index_tickets_on_bill_id"
 
 end

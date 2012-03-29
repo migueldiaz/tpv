@@ -36,16 +36,17 @@
 
   <div class="container">
     <div class="row">
-      <div class="span6"><%= yield %></div>
-      <div class="span6">
+      <div class="span8"><%= yield %></div>
+      <div class="span4">
+        <h2>Opciones Generales</h2>
+       <br/>
+       <p><%=link_to 'Mesas',tables_path,:class=>'btn btn-large'%></p>
+       <p><%=link_to 'Cuentas',bills_path,:class=>'btn btn-large'%></p>
+       <p><%=link_to 'Productos',products_path,:class=>'btn btn-large'%></p>
+       <p><%=link_to 'Categorias',categories_path,:class=>'btn btn-large'%></p>
+        <p><%=link_to 'Tickets',tickets_path,:class=>'btn btn-large'%></p>
        
-       <!-- 
-        <h2>About Us</h2>
-       Texto que se muestra en el lateral, jugar con las anchuras
      
-        
-        Cuando @bill no nulo carga las opciones de productos-->
-          <%= render :file=>"shared/acordeon"%>
       </div>
     
     </div>

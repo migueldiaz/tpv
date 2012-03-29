@@ -1,4 +1,9 @@
+<%if !@bill.table.nil?%>
 <h1>Cuenta: <%=@bill.table.name%></h1>
+<%else%>
+<h1>Cuenta: <%=@bill.ticket.table%></h1>
+<%end%>
+
 
 <br/>
 <ul class="breadcrumb">
@@ -6,7 +11,13 @@
    <%=link_to 'Mesas',tables_path%> <span class="divider">/</span>
   </li>
    <li >
-   <%=link_to @bill.table.name,table_path(@bill.table)%> <span class="divider">/</span>
+   <%if !@bill.table.nil?%>
+   <%=link_to @bill.table.name,table_path(@bill.table)%> 
+   <span class="divider">/</span>
+   <%else%>
+   
+   <%end%>
+   
   </li>
   <li >
  
@@ -26,22 +37,22 @@
 <p><%= l @bill.created_at,:format=>:short %></p>
 <label class="label"><%= t("activerecord.attributes.bill.tatus", :default => t("activerecord.labels.status", :default => "Estado")) %>:</label>
 <p>
- <%if @bill.status==false%>
- <span class="label label-important">Pendiente</span>
+ <%if @bill.status==false%> 
+  	<a href="<%=new_ticket_path(:id=>@bill)%>" class="btn btn-danger" rel="popover" data-content="Haga clic en el enlace para crear el ticket de la cuenta" data-original-title="Atención">Pendiente</a>
  <%else%>
- <span class="label label-success">Pagada</span>
+  	<a href="#" class="btn btn-info" rel="popover" data-content="Haga clic en el enlace para cambiar el estado de la cuenta" data-original-title="Atención">Pagada</a>
  <%end%>
 </p>
-<label class="label">Productos</label>
 
+<label class="label">Productos</label>
 <div id='items'>
-<%= render :partial=>'shared/items',:collection=>@bill.items,:locals=>{:bill=>@bill}%>
+<%= render :partial=>'shared/items',:locals=>{:bill=>@bill}%>
 </div>
 
-
 <div class="form-actions">
-<%= link_to "Volver", bills_path, :class => 'btn'  %>
-<%= link_to "Editar", edit_bill_path(@bill), :class => 'btn' %>
+<%= link_to "Volver a mesas", tables_path, :class => 'btn'  %>
+<a href="<%=edit_bill_path(@bill)%>" class="btn btn-info" rel="popover" data-content="Este botón permite editar la cuenta y trasladarla a otra mesa, asi como añadir la descripción" data-original-title="Edición">Editar</a>
+
 <%= link_to "Borrar", bill_path(@bill), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn' %>
 </div>
 

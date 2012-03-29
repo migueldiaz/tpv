@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
 	  if @item.amount>1
 	   @item.update_attributes( :amount => @item.amount - 1)
 	  end 
-	  respond_to do |format|		#format.html{ redirect_to @item.bill}
+	  respond_to do |format|
 		format.js
 	   end
 	end
@@ -28,8 +28,7 @@ class ItemsController < ApplicationController
 	end
 	def create
 	    ####OJITO el build pasa por aqui
-	    	
-	    	
+	    	   	
 	    	@bill=Bill.find(params[:bill_id])
 	    	logger.info 'Bill#################################################'
 	    	logger.info params[:bill_id]
@@ -49,7 +48,8 @@ class ItemsController < ApplicationController
 		else
 			@item=Item.create(params[:item])
 		end	
-		redirect_to @item.bill
+      	
+      	redirect_to @bill
 		
 	end
 	

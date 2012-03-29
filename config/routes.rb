@@ -1,4 +1,6 @@
 Tpv::Application.routes.draw do
+  resources :tickets
+
   get "home/index"
   resources :items
   resources :categories

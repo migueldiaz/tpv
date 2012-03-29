@@ -15,8 +15,8 @@
         <td><%= link_to category.name, category_path(category) %></td>
         <td><%= category.created_at %></td>
         <td>
-          <%= link_to 'Edit', edit_category_path(category), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', category_path(category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Editar', edit_category_path(category), :class => 'btn btn' %>
+          <%= link_to 'Eliminar', category_path(category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
         </td>
       </tr>
     <% end %>

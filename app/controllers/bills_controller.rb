@@ -1,6 +1,6 @@
 class BillsController < ApplicationController
 
-  
+  layout 'sell',:only=>:show
 
   # GET /bills
   # GET /bills.json
@@ -19,9 +19,10 @@ class BillsController < ApplicationController
     @categories=Category.all
     @bill = Bill.find(params[:id])
     @products=Product.all
+    
     respond_to do |format|
       format.html
-      format.js { head :no_content }
+     # format.js { head :no_content }
      end    
   end
 
