@@ -1,0 +1,14 @@
+<h1>Ticket <%=@ticket.id%></h1>
+<label class='label'>Mesa</label>
+<%=@ticket.table%>
+<label class='label'>Pedidos del ticket</label>
+<%=render :partial=>'shared/itemsticket',:locals=>{:bill=>@bill}%>
+<div class="form-actions">
+  <%=link_to 'Ver Ticket',ticket_path(:id=>@ticket)+'.pdf',:class=>'btn btn-warning'%>
+  <%= link_to 'Back', tickets_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_ticket_path(@ticket), :class => 'btn' %>
+  <%= link_to 'Delete', ticket_path(@ticket), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+
+</div>
+
+

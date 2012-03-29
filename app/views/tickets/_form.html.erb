@@ -1,0 +1,22 @@
+<%= form_for @ticket, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  
+  <fieldset>
+    <legend>Ticket de la mesa <%=@bill.table.name%></legend>  
+    <%= f.hidden_field :bill_id,:value=>@bill.id %>
+     <%= f.hidden_field :table,:value=>@bill.table.name %>
+    
+
+	<%= render :partial=>'shared/itemsticket',:locals=>{:bill=>@bill}%>
+
+
+
+    <div class="form-actions">
+      <%= f.submit 'Guardar ticket', :class => 'btn btn-primary' %>
+      <%= link_to 'Cancelar', tickets_path, :class => 'btn' %>
+    </div>
+  
+  	
+  
+  </fieldset>
+<% end %>

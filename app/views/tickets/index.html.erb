@@ -1,0 +1,28 @@
+<h1>Tickets</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Mesa</th>
+      <th>Emitida</th>
+      <th>Importe</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.id %></td>
+        <td><%= ticket.table%></td>
+        <td><%= l ticket.created_at,:format=>:short %></td>
+        <td><%=number_to_currency(total(ticket.bill),:unit =>'€',:format => "%n %u")%></td>
+        <td>
+          <%= link_to 'Ver', ticket_path(ticket) ,:class=>'btn'%>
+          <%= link_to 'Eliminar', ticket_path(ticket), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_ticket_path, :class => 'btn btn-primary' %>
